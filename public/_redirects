@@ -1,4 +1,2 @@
-# Cloudflare Pages — SPA fallback.
-# O painel /admin (Decap) é servido como arquivo estático e não deve cair no fallback.
-/admin/*  /admin/index.html  200
-/*        /index.html        200
+# Workers Static Assets — SPA fallback configurado via wrangler.toml (not_found_handling)
+# Este arquivo pode ficar vazio; as regras 200 causam loop no Workers Static Assets.
