@@ -1,0 +1,203 @@
+# ============================================================
+# Decap CMS — config.yml
+# Documentação: https://decapcms.org/docs/configuration-options/
+# ============================================================
+
+backend:
+  name: github
+  repo: gianSE/portifolio          # ALTERE para seu usuário/repo real
+  branch: main
+  base_url: https://oauth.gianrodrigues.dev  # URL do Cloudflare Worker OAuth (Sprint 12)
+
+# Onde as imagens enviadas pelo admin ficam
+media_folder: public/uploads
+public_folder: /uploads
+
+# Idioma padrão da interface
+locale: pt
+
+# ============================================================
+# COLEÇÕES
+# ============================================================
+collections:
+
+  # ---------- Sobre (singleton) ----------
+  - name: about
+    label: "Sobre mim"
+    files:
+      - name: index
+        label: "Configuração principal"
+        file: content/about/index.md
+        fields:
+          - { label: "Badge do Hero", name: heroBadge, widget: string }
+          - { label: "Headline", name: headline, widget: string }
+          - { label: "Subheadline", name: subheadline, widget: text }
+          - { label: "Avatar", name: avatar, widget: image, required: false }
+          - label: "Títulos do efeito de digitação"
+            name: roles
+            widget: list
+            field: { label: Título, name: role, widget: string }
+          - label: "Áreas de expertise"
+            name: expertise
+            widget: list
+            field: { label: Área, name: item, widget: string }
+          - label: "Parágrafos (Sobre mim)"
+            name: paragraphs
+            widget: list
+            field: { label: Parágrafo, name: p, widget: text }
+          - label: "Contadores de impacto"
+            name: stats
+            widget: list
+            fields:
+              - { label: Rótulo, name: label, widget: string }
+              - { label: Valor, name: value, widget: number }
+              - { label: Sufixo (ex.: +), name: suffix, widget: string, required: false }
+          - label: "Categorias de competências"
+            name: skills
+            widget: list
+            fields:
+              - { label: Categoria, name: name, widget: string }
+              - label: "Ícone"
+                name: icon
+                widget: select
+                options: [code, database, server, shield]
+              - label: "Itens"
+                name: items
+                widget: list
+                fields:
+                  - { label: Nome, name: name, widget: string }
+                  - { label: "Nível (0-100)", name: level, widget: number, required: false }
+
+  # ---------- Projetos ----------
+  - name: projects
+    label: "Projetos"
+    label_singular: "Projeto"
+    folder: content/projects
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Título, name: title, widget: string }
+      - label: Categoria
+        name: category
+        widget: select
+        options: ["Full Stack", "Dados", "BI", "DevOps"]
+      - { label: Destaque, name: featured, widget: boolean, default: false }
+      - { label: Ordem, name: order, widget: number, required: false }
+      - { label: Data, name: date, widget: datetime, format: "YYYY-MM-DD" }
+      - { label: Descrição curta, name: description, widget: text }
+      - label: Tecnologias
+        name: technologies
+        widget: list
+        field: { label: Tecnologia, name: tech, widget: string }
+      - label: Destaques
+        name: highlights
+        widget: list
+        field: { label: Destaque, name: h, widget: string }
+      - { label: Imagem de capa, name: cover, widget: image, required: false }
+      - { label: GitHub, name: github, widget: string, required: false }
+      - { label: Demo, name: demo, widget: string, required: false }
+      - { label: Descrição completa (Markdown), name: body, widget: markdown }
+
+  # ---------- Dashboards ----------
+  - name: dashboards
+    label: "Dashboards"
+    label_singular: "Dashboard"
+    folder: content/dashboards
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Título, name: title, widget: string }
+      - { label: Ferramenta, name: tool, widget: string, default: "Power BI" }
+      - { label: Ordem, name: order, widget: number, required: false }
+      - { label: Data, name: date, widget: datetime, format: "YYYY-MM-DD" }
+      - { label: Descrição, name: description, widget: text }
+      - { label: Imagem principal, name: cover, widget: image }
+      - label: "Screenshots adicionais"
+        name: images
+        widget: list
+        field: { label: Imagem, name: img, widget: image }
+      - label: Tags
+        name: tags
+        widget: list
+        field: { label: Tag, name: tag, widget: string }
+      - { label: Conteúdo detalhado (Markdown), name: body, widget: markdown }
+
+  # ---------- Arquiteturas ----------
+  - name: architectures
+    label: "Arquiteturas"
+    label_singular: "Arquitetura"
+    folder: content/architectures
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Título, name: title, widget: string }
+      - { label: Descrição, name: description, widget: text }
+      - { label: Ordem, name: order, widget: number, required: false }
+      - { label: Data, name: date, widget: datetime, format: "YYYY-MM-DD" }
+      - label: "Nós do fluxo"
+        name: flow
+        widget: list
+        fields:
+          - { label: Rótulo, name: label, widget: string }
+          - { label: Descrição do nó, name: description, widget: string, required: false }
+      - label: Tecnologias
+        name: technologies
+        widget: list
+        field: { label: Tecnologia, name: tech, widget: string }
+      - { label: Descrição detalhada (Markdown), name: body, widget: markdown }
+
+  # ---------- Experiências ----------
+  - name: experiences
+    label: "Experiências"
+    label_singular: "Experiência"
+    folder: content/experiences
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Cargo, name: role, widget: string }
+      - { label: Organização, name: organization, widget: string }
+      - { label: Área, name: area, widget: string }
+      - { label: Data de início (YYYY-MM), name: startDate, widget: string }
+      - { label: Data de fim (YYYY-MM), name: endDate, widget: string, required: false }
+      - { label: Emprego atual, name: current, widget: boolean, default: false }
+      - { label: Ordem, name: order, widget: number, required: false }
+      - { label: Descrição curta, name: description, widget: text }
+      - label: Destaques
+        name: highlights
+        widget: list
+        field: { label: Destaque, name: h, widget: string }
+      - { label: Detalhes (Markdown), name: body, widget: markdown }
+
+  # ---------- Certificações ----------
+  - name: certifications
+    label: "Certificações"
+    label_singular: "Certificação"
+    folder: content/certifications
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Título, name: title, widget: string }
+      - { label: Emissor, name: issuer, widget: string }
+      - { label: Data, name: date, widget: datetime, format: "YYYY-MM-DD" }
+      - { label: URL da credencial, name: credentialUrl, widget: string, required: false }
+      - { label: Logo, name: logo, widget: image, required: false }
+      - { label: Notas (Markdown), name: body, widget: markdown, required: false }
+
+  # ---------- Artigos ----------
+  - name: articles
+    label: "Artigos"
+    label_singular: "Artigo"
+    folder: content/articles
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Título, name: title, widget: string }
+      - { label: Resumo, name: excerpt, widget: text }
+      - { label: Data, name: date, widget: datetime, format: "YYYY-MM-DD" }
+      - label: Tags
+        name: tags
+        widget: list
+        field: { label: Tag, name: tag, widget: string }
+      - { label: Imagem de capa, name: cover, widget: image, required: false }
+      - { label: URL externo (se publicado fora), name: externalUrl, widget: string, required: false }
+      - { label: Conteúdo (Markdown), name: body, widget: markdown }

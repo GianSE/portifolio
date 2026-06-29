@@ -1,0 +1,11 @@
+name = "portfolio-oauth"
+main = "index.js"
+compatibility_date = "2024-09-01"
+
+# Roteamento (troque pelo seu domínio)
+# routes = [{ pattern = "oauth.gianrodrigues.dev/*", zone_name = "gianrodrigues.dev" }]
+
+# Secrets (configure via wrangler secret put ou no painel):
+#   GITHUB_CLIENT_ID
+#   GITHUB_CLIENT_SECRET
+#   ALLOWED_ORIGIN

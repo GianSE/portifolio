@@ -1,0 +1,4 @@
+# Cloudflare Pages — SPA fallback.
+# O painel /admin (Decap) é servido como arquivo estático e não deve cair no fallback.
+/admin/*  /admin/index.html  200
+/*        /index.html        200

@@ -1,0 +1,35 @@
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-full);
+}
+
+.track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 52px;
+  height: 28px;
+  padding: 3px;
+  border-radius: var(--radius-full);
+  background: var(--surface-strong);
+  border: 1px solid var(--border);
+  transition: background var(--dur-base) var(--ease-out);
+}
+
+.thumb {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-full);
+  color: var(--accent-contrast);
+  background: var(--gradient-brand);
+  box-shadow: var(--shadow-sm);
+  transform: translateX(0);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.track[data-dark='false'] .thumb {
+  transform: translateX(24px);
+}

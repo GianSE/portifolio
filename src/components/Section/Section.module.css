@@ -1,0 +1,37 @@
+.section {
+  position: relative;
+  scroll-margin-top: 84px; /* compensa a navbar fixa no scroll-spy */
+}
+
+.padded {
+  padding-block: var(--section-gap);
+}
+
+.header {
+  max-width: 720px;
+  margin-bottom: var(--space-7);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--brand-3);
+  margin-bottom: var(--space-3);
+}
+
+.title {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-extrabold);
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  margin-top: var(--space-4);
+  font-size: var(--fs-md);
+  color: var(--text-muted);
+  line-height: var(--lh-normal);
+}

@@ -1,0 +1,179 @@
+.wrap {
+  position: relative;
+  padding-block: var(--space-4);
+}
+
+/* Linha central — absolutamente posicionada no eixo da coluna do meio */
+.line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  transform: translateX(-50%);
+  transform-origin: top;
+  background: linear-gradient(to bottom, var(--brand-1), var(--brand-2) 55%, var(--brand-3));
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
+}
+
+/*
+  Cada item é uma grade de 3 colunas: [card-esq] [marcador] [card-dir]
+  O markerWrap SEMPRE fica na coluna 2 (centro).
+  Item .left → card na coluna 1  (alinhado à direita)
+  Item .right → card na coluna 3 (alinhado à esquerda)
+*/
+.item {
+  display: grid;
+  grid-template-columns: 1fr 40px 1fr;
+  align-items: center;
+}
+
+/* Marcador sempre no centro */
+.markerWrap {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+}
+
+/* Card lado esquerdo */
+.left .card {
+  grid-column: 1;
+  grid-row: 1;
+  margin-right: var(--space-5);
+  text-align: right;
+}
+
+/* Card lado direito */
+.right .card {
+  grid-column: 3;
+  grid-row: 1;
+  margin-left: var(--space-5);
+}
+
+/* Alinha o meta (área + datas) para itens à direita */
+.right .cardMeta {
+  flex-direction: row-reverse;
+}
+
+.right .highlights .highlight {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+/* Marcador */
+.marker {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--gradient-brand);
+  box-shadow: 0 0 0 4px var(--bg), 0 0 0 6px var(--brand-2);
+}
+
+/* Card */
+.card {
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.cardMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.area {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--brand-3);
+  font-weight: var(--fw-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.dates {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-faint);
+}
+
+.role { font-size: var(--fs-base); font-weight: var(--fw-semibold); }
+.org  { font-size: var(--fs-sm); color: var(--text-muted); }
+.desc { font-size: var(--fs-sm); color: var(--text-muted); line-height: var(--lh-normal); }
+
+.highlights { display: flex; flex-direction: column; gap: 4px; }
+
+.highlight {
+  display: flex;
+  gap: var(--space-2);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.bullet { color: var(--brand-3); font-weight: bold; flex-shrink: 0; }
+
+.currentBadge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: #22c55e;
+  margin-top: var(--space-1);
+}
+
+/* =================== Mobile: linha à esquerda, todos os cards à direita =================== */
+@media (max-width: 720px) {
+  .line {
+    left: 20px;
+    transform: none;
+  }
+
+  .item {
+    grid-template-columns: 40px 1fr;
+  }
+
+  /* markerWrap sempre na coluna 1 */
+  .markerWrap {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  /* Ambos os lados: card na coluna 2, sem margem especial */
+  .left .card,
+  .right .card {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+    text-align: left;
+  }
+
+  .right .cardMeta { flex-direction: row; }
+
+  .right .highlights .highlight {
+    flex-direction: row;
+    text-align: left;
+  }
+}

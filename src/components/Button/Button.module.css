@@ -1,0 +1,62 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-sm);
+  line-height: 1;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* Tamanhos */
+.md {
+  padding: var(--space-3) var(--space-5);
+}
+.sm {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--fs-xs);
+}
+
+/* Variantes */
+.primary {
+  color: var(--accent-contrast);
+  background: var(--gradient-brand);
+  box-shadow: var(--shadow-glow);
+}
+
+.secondary {
+  color: var(--text);
+  background: var(--surface-strong);
+  border-color: var(--border-strong);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+}
+.secondary:hover {
+  border-color: var(--brand-2);
+}
+
+.ghost {
+  color: var(--text-muted);
+  background: transparent;
+}
+.ghost:hover {
+  color: var(--text);
+  background: var(--surface);
+}
