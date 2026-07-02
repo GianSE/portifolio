@@ -237,7 +237,14 @@ function main() {
     execFileSync(
       'latexmk',
       ['-pdf', '-interaction=nonstopmode', '-halt-on-error', `-output-directory=${TMP_DIR}`, texPath],
-      { stdio: 'inherit' },
+      {
+        stdio: 'inherit',
+        // Build determinístico: mesmo conteúdo -> mesmo PDF byte-a-byte.
+        // Sem isso, o /CreationDate embutido muda a cada compilação e o
+        // workflow de CI ficaria commitando PDF "novo" toda hora, mesmo
+        // quando o currículo não mudou de verdade.
+        env: { ...process.env, SOURCE_DATE_EPOCH: '0' },
+      },
     );
 
     copyFileSync(join(TMP_DIR, `cv-${locale}.pdf`), join(ROOT, 'public', `cv-${locale}.pdf`));

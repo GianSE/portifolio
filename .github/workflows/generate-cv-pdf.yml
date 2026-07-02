@@ -1,0 +1,53 @@
+name: Generate CV PDFs
+
+# Roda só quando o conteúdo do currículo muda (about/experiences/projects)
+# ou o próprio gerador é alterado. Compila com LaTeX e commita os .pdf de
+# volta em public/ — esse commit é o que dispara o deploy de verdade
+# (Workers Builds da Cloudflare, que só copia public/ pra dist/).
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/about/**'
+      - 'content/experiences/**'
+      - 'content/projects/**'
+      - 'scripts/generate-cv-pdf.mjs'
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            texlive-latex-base \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-lang-portuguese \
+            texlive-fonts-recommended \
+            latexmk
+
+      - name: Generate CV PDFs
+        run: node scripts/generate-cv-pdf.mjs
+
+      - name: Commit generated PDFs
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: atualiza PDFs do currículo (gerado automaticamente)"
+          file_pattern: "public/cv-pt.pdf public/cv-en.pdf"
