@@ -312,9 +312,15 @@
     padding-bottom: 10pt;
     margin-bottom: 14pt;
   }
+  .header::after {
+    background: #000;
+  }
 
   .section {
     margin-bottom: 14pt;
+  }
+  .section h2::before {
+    background: #000;
   }
   .section h2 {
     font-size: 9.5pt;

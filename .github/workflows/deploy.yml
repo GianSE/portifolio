@@ -27,6 +27,12 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Generate CV PDFs
+        run: node scripts/generate-cv-pdf.mjs
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:
