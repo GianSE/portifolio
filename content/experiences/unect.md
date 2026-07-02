@@ -4,8 +4,8 @@ role_en: "Back-End Developer"
 organization: "Empresa Júnior Unect"
 area: "Desenvolvimento"
 area_en: "Development"
-startDate: "2024-01"
-endDate: "2025-01"
+startDate: "2025-01"
+endDate: "2025-08"
 current: false
 order: 10
 showInTimeline: false

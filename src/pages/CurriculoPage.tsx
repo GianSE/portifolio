@@ -11,7 +11,7 @@ import {
   localizeExperience,
 } from '@/services/content.service';
 import type { Experience } from '@/types/content';
-import { Icon } from '@/components/Icon/Icon';
+import { Icon, type IconName } from '@/components/Icon/Icon';
 import styles from './CurriculoPage.module.css';
 
 interface EntryProps { exp: Experience; locale: 'pt' | 'en'; current: string; }
@@ -21,7 +21,8 @@ function Entry({ exp, locale, current }: EntryProps) {
     <div className={styles.entry}>
       <div className={styles.entryHead}>
         <span className={styles.entryTitle}>
-          {exp.role} <span className={styles.entryOrg}>— {exp.organization}</span>
+          {exp.role}
+          <span className={styles.entryOrg}> — {exp.organization}</span>
         </span>
         <span className={styles.entryDate}>
           {formatMonthYear(exp.startDate, locale)} – {exp.current ? current : formatMonthYear(exp.endDate, locale)}
@@ -34,6 +35,19 @@ function Entry({ exp, locale, current }: EntryProps) {
         </ul>
       )}
     </div>
+  );
+}
+
+interface ContactItemProps { icon: IconName; href: string; label: string; external?: boolean; }
+
+function ContactItem({ icon, href, label, external }: ContactItemProps) {
+  return (
+    <li className={styles.contactItem}>
+      <Icon name={icon} size={14} className={styles.contactIcon} />
+      <a href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined}>
+        {label}
+      </a>
+    </li>
   );
 }
 
@@ -69,10 +83,10 @@ export default function CurriculoPage() {
           <h1 className={styles.name}>{SITE.name}</h1>
           {about?.headline && <p className={styles.tagline}>{about.headline}</p>}
           <ul className={styles.contacts}>
-            <li><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
-            <li><a href={`tel:${SITE.phone.replace(/[^\d+]/g, '')}`}>{SITE.phone}</a></li>
-            <li><a href={SITE.githubUrl} target="_blank" rel="noopener noreferrer">github.com/GianSE</a></li>
-            <li><a href={SITE.linkedinUrl} target="_blank" rel="noopener noreferrer">linkedin.com/in/gian-pedro-rodrigues</a></li>
+            <ContactItem icon="mail" href={`mailto:${SITE.email}`} label={SITE.email} />
+            <ContactItem icon="phone" href={`tel:${SITE.phone.replace(/[^\d+]/g, '')}`} label={SITE.phone} />
+            <ContactItem icon="github" href={SITE.githubUrl} label="github.com/GianSE" external />
+            <ContactItem icon="linkedin" href={SITE.linkedinUrl} label="linkedin.com/in/gian-pedro-rodrigues" external />
           </ul>
         </header>
 
@@ -107,20 +121,23 @@ export default function CurriculoPage() {
         {about?.skills && about.skills.length > 0 && (
           <section className={styles.section}>
             <h2>{t.cv.skills}</h2>
-            <ul className={styles.skillList}>
+            <div className={styles.skillGroups}>
               {about.skills.map((cat) => (
-                <li key={cat.name}>
-                  <strong>{cat.name}:</strong> {cat.items.map((i) => i.name).join(', ')}
-                </li>
+                <div key={cat.name} className={styles.skillGroup}>
+                  <span className={styles.skillGroupLabel}>{cat.name}</span>
+                  <div className={styles.chips}>
+                    {cat.items.map((i) => <span key={i.name} className={styles.chip}>{i.name}</span>)}
+                  </div>
+                </div>
               ))}
-            </ul>
+            </div>
           </section>
         )}
 
         {about?.languages && about.languages.length > 0 && (
           <section className={styles.section}>
             <h2>{t.cv.languages}</h2>
-            <ul className={styles.skillList}>
+            <ul className={styles.plainList}>
               {about.languages.map((l) => (
                 <li key={l.name}><strong>{l.name}:</strong> {l.level}</li>
               ))}
