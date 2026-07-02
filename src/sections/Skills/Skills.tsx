@@ -29,9 +29,9 @@ function SkillTag({ name, delay }: SkillTagProps) {
   );
 }
 
-interface CategoryCardProps { category: SkillCategory; index: number; active: boolean; onClick: () => void; }
+interface CategoryCardProps { category: SkillCategory; active: boolean; onClick: () => void; }
 
-function CategoryCard({ category, index, active, onClick }: CategoryCardProps) {
+function CategoryCard({ category, active, onClick }: CategoryCardProps) {
   return (
     <motion.div
       className={[styles.card, active ? styles.cardActive : ''].join(' ')}
@@ -58,21 +58,6 @@ function CategoryCard({ category, index, active, onClick }: CategoryCardProps) {
           <SkillTag key={item.name} name={item.name} delay={i * 0.04} />
         ))}
       </motion.div>
-
-      {/* Barra de atividade */}
-      <div className={styles.barRow}>
-        {category.items.slice(0, 6).map((item) => (
-          <motion.div
-            key={item.name}
-            className={styles.bar}
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: (item.level ?? 80) / 100 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: index * 0.05 }}
-            title={`${item.name}: ${item.level ?? 80}%`}
-          />
-        ))}
-      </div>
     </motion.div>
   );
 }
@@ -101,7 +86,6 @@ export function Skills({ about }: SkillsProps) {
           <CategoryCard
             key={cat.name}
             category={cat}
-            index={i}
             active={activeIdx === i}
             onClick={() => setActiveIdx(activeIdx === i ? null : i)}
           />

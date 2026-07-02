@@ -13,7 +13,6 @@ import type {
   Architecture,
   Article,
   Certification,
-  Dashboard,
   Experience,
   Project,
 } from '@/types/content';
@@ -57,16 +56,6 @@ export function getProjectBySlug(slug: string): Project | undefined {
 /** Categorias presentes (para construir filtros dinamicamente). */
 export function getProjectCategories(): string[] {
   return Array.from(new Set(getProjects().map((p) => p.category)));
-}
-
-/* ----------------------------- Dashboards ----------------------------- */
-const dashboardModules = import.meta.glob<Module<Dashboard>>(
-  '/content/dashboards/*.md',
-  { eager: true },
-);
-
-export function getDashboards(): Dashboard[] {
-  return sortByOrderThenDate(collect(dashboardModules));
 }
 
 /* ---------------------------- Arquiteturas ---------------------------- */

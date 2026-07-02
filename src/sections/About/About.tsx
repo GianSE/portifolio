@@ -99,9 +99,9 @@ export function About({ about }: AboutProps) {
           >
             <span className={styles.cardLabel}>// tech focus</span>
             <p className={styles.cardText}>
-              React · Node.js · PostgreSQL<br />
-              ETL · Data Lake · Power BI<br />
-              Docker · Authentik · SSO
+              Python · Polars · DuckDB<br />
+              Data Lake · Docker · Prefect<br />
+              CI/CD · Power Automate · MCP
             </p>
           </motion.div>
         </motion.div>

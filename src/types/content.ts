@@ -13,7 +13,7 @@ export interface ContentMeta {
   body: string;
 }
 
-export type ProjectCategory = 'Full Stack' | 'Dados' | 'BI' | 'DevOps';
+export type ProjectCategory = 'Full Stack' | 'Dados' | 'Pesquisa' | 'DevOps';
 
 export interface Project extends ContentMeta {
   title: string;
@@ -26,17 +26,6 @@ export interface Project extends ContentMeta {
   github?: string;
   demo?: string;
   date: string; // ISO
-  order?: number;
-}
-
-export interface Dashboard extends ContentMeta {
-  title: string;
-  description: string;
-  tool: string; // ex.: "Power BI"
-  cover: string;
-  images: string[]; // screenshots para a galeria/zoom
-  tags: string[];
-  date: string;
   order?: number;
 }
 
@@ -88,8 +77,6 @@ export interface Article extends ContentMeta {
 
 export interface SkillItem {
   name: string;
-  /** 0–100 para barra/ível (opcional) */
-  level?: number;
 }
 
 export interface SkillCategory {

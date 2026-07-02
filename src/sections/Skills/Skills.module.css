@@ -88,21 +88,6 @@
   background: var(--gradient-brand-soft);
 }
 
-/* Minibars */
-.barRow {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.bar {
-  height: 3px;
-  border-radius: 2px;
-  background: var(--gradient-brand);
-  transform-origin: left;
-  opacity: 0.5;
-}
-
 @media (max-width: 860px) {
   .grid { grid-template-columns: 1fr; }
 }
