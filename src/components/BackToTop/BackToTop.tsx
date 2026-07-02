@@ -16,7 +16,7 @@ export function BackToTop() {
     <AnimatePresence>
       {visible && (
         <motion.button
-          className={styles.btn}
+          className={`no-print ${styles.btn}`}
           onClick={toTop}
           aria-label="Voltar ao topo"
           initial={{ opacity: 0, scale: 0.8, y: 12 }}

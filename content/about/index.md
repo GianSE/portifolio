@@ -61,6 +61,7 @@ skills:
       - { name: "Prefect" }
       - { name: "Web Scraping" }
       - { name: "Power Automate" }
+      - { name: "MCP" }
   - name: "Desenvolvimento"
     name_en: "Development"
     icon: "code"
@@ -81,14 +82,15 @@ skills:
       - { name: "Nginx" }
       - { name: "Cloudflare" }
       - { name: "Event-Driven" }
-  - name: "Integração & IA"
-    name_en: "Integration & AI"
-    icon: "shield"
-    items:
-      - { name: "SSO (Authentik)" }
-      - { name: "OIDC / OAuth2" }
-      - { name: "MCP" }
-      - { name: "Infisical" }
+cvSummary: "Estudante de Engenharia da Computação na UTFPR e Analista de Dados na Drogamais, com experiência prática na construção de pipelines de dados completos — da coleta ao dashboard — usando Python, Polars e DuckDB, com armazenamento em Data Lake (MinIO). Atuação complementar em desenvolvimento web (React, Node.js) e infraestrutura (Docker, CI/CD), com automações e integrações de IA via MCP."
+cvSummary_en: "Computer Engineering student at UTFPR and Data Analyst at Drogamais, with hands-on experience building complete data pipelines — from collection to dashboard — using Python, Polars and DuckDB, with storage in a Data Lake (MinIO). Complementary experience in web development (React, Node.js) and infrastructure (Docker, CI/CD), with automation and AI integrations via MCP."
+cvObjective: "Atuar como Engenheiro(a) de Dados, aprofundando conhecimentos em arquiteturas de dados, orquestração de pipelines e automação com IA aplicada — utilizando Python, Polars, DuckDB e ferramentas modernas de infraestrutura."
+cvObjective_en: "To work as a Data Engineer, deepening my knowledge in data architectures, pipeline orchestration and applied AI automation — using Python, Polars, DuckDB and modern infrastructure tooling."
+languages:
+  - name: "Inglês"
+    name_en: "English"
+    level: "Intermediário (B1) — leitura, escrita, escuta e conversação. Formação pelo CALEM (Centro Acadêmico de Línguas Estrangeiras Modernas) na UTFPR."
+    level_en: "Intermediate (B1) — reading, writing, listening and speaking. Studied at CALEM (Center for Modern Foreign Languages) at UTFPR."
 ---
 
 Analista de Dados na Drogamais, formando em Engenharia da Computação pela UTFPR.

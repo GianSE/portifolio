@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { getExperiences, localizeExperience } from '@/services/content.service';
+import { getTimelineExperiences, localizeExperience } from '@/services/content.service';
 import { fadeInUp, staggerContainer, viewportOnce } from '@/animations/variants';
 import { formatMonthYear } from '@/utils/format';
 import { useLocale } from '@/hooks/useLocale';
@@ -11,7 +11,7 @@ import styles from './Timeline.module.css';
 export function Timeline() {
   const { locale } = useLocale();
   const t = STRINGS[locale].timeline;
-  const experiences = getExperiences().map((e) => localizeExperience(e, locale));
+  const experiences = getTimelineExperiences().map((e) => localizeExperience(e, locale));
   const lineRef = useRef<HTMLDivElement>(null);
 
   return (

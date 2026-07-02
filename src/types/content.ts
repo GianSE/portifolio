@@ -67,6 +67,8 @@ export interface Experience extends ContentMeta {
   highlights: string[];
   highlights_en?: string[];
   order?: number;
+  /** false = aparece só no currículo, não na Timeline pública do portfólio (default true) */
+  showInTimeline?: boolean;
 }
 
 export interface Certification extends ContentMeta {
@@ -106,6 +108,13 @@ export interface StatItem {
   suffix?: string;
 }
 
+export interface LanguageItem {
+  name: string;
+  name_en?: string;
+  level: string;
+  level_en?: string;
+}
+
 export interface AboutContent extends ContentMeta {
   heroBadge: string;
   heroBadge_en?: string;
@@ -121,4 +130,10 @@ export interface AboutContent extends ContentMeta {
   expertise_en?: string[];
   stats: StatItem[];
   skills: SkillCategory[];
+  /** Campos específicos do currículo — deriva do mesmo "about", nunca diverge do portfólio */
+  cvSummary?: string;
+  cvSummary_en?: string;
+  cvObjective?: string;
+  cvObjective_en?: string;
+  languages?: LanguageItem[];
 }

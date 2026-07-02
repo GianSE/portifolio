@@ -50,7 +50,7 @@ export function Navbar() {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className={[styles.header, scrolled ? styles.scrolled : ''].join(' ')}
+      className={['no-print', styles.header, scrolled ? styles.scrolled : ''].join(' ')}
     >
       <nav className={`container ${styles.nav}`} aria-label={t.navbar.ariaNav}>
         <button className={styles.brand} onClick={() => go('hero')}>
@@ -82,8 +82,6 @@ export function Navbar() {
           <Button
             as="a"
             href={SITE.cvUrl}
-            target="_blank"
-            rel="noopener noreferrer"
             size="sm"
             className={styles.cvBtn}
           >

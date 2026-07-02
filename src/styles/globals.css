@@ -154,3 +154,13 @@ p {
   background-clip: text;
   color: transparent;
 }
+
+/* ===================== Impressão ===================== */
+@media print {
+  body::before {
+    display: none;
+  }
+  .no-print {
+    display: none !important;
+  }
+}

@@ -81,6 +81,19 @@ collections:
                 widget: list
                 fields:
                   - { label: Nome, name: name, widget: string }
+          - { label: "Currículo — Resumo Profissional", name: cvSummary, widget: text, required: false }
+          - { label: "Currículo — Resumo Profissional (EN)", name: cvSummary_en, widget: text, required: false }
+          - { label: "Currículo — Objetivo", name: cvObjective, widget: text, required: false }
+          - { label: "Currículo — Objetivo (EN)", name: cvObjective_en, widget: text, required: false }
+          - label: "Currículo — Idiomas"
+            name: languages
+            widget: list
+            required: false
+            fields:
+              - { label: Idioma, name: name, widget: string }
+              - { label: "Idioma (EN)", name: name_en, widget: string, required: false }
+              - { label: Nível, name: level, widget: string }
+              - { label: "Nível (EN)", name: level_en, widget: string, required: false }
 
   # ---------- Projetos ----------
   - name: projects
@@ -166,6 +179,11 @@ collections:
       - { label: Data de fim (YYYY-MM), name: endDate, widget: string, required: false }
       - { label: Emprego atual, name: current, widget: boolean, default: false }
       - { label: Ordem, name: order, widget: number, required: false }
+      - label: "Mostrar na Timeline do portfólio"
+        name: showInTimeline
+        widget: boolean
+        default: true
+        hint: "Desmarque para aparecer só no currículo (/curriculo), não na home"
       - { label: Descrição curta, name: description, widget: text }
       - { label: "Descrição curta (EN)", name: description_en, widget: text, required: false }
       - label: Destaques

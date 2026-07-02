@@ -11,7 +11,7 @@ export function Footer() {
   const t = STRINGS[locale];
 
   return (
-    <footer className={styles.footer}>
+    <footer className={`no-print ${styles.footer}`}>
       <div className={`container ${styles.inner}`}>
         <div className={styles.brandCol}>
           <span className={styles.brand}>

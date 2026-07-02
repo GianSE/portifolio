@@ -68,8 +68,6 @@ export function Contact() {
           <Button
             as="a"
             href={SITE.cvUrl}
-            target="_blank"
-            rel="noopener noreferrer"
             variant="secondary"
           >
             <Icon name="download" size={16} />

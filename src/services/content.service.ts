@@ -76,13 +76,18 @@ const experienceModules = import.meta.glob<Module<Experience>>(
 );
 
 export function getExperiences(): Experience[] {
-  // Timeline: mais recente primeiro (por startDate desc), respeitando order.
+  // Currículo: histórico completo, mais recente primeiro (por startDate desc), respeitando order.
   return [...collect(experienceModules)].sort((a, b) => {
     const ao = a.order ?? Number.MAX_SAFE_INTEGER;
     const bo = b.order ?? Number.MAX_SAFE_INTEGER;
     if (ao !== bo) return ao - bo;
     return (b.startDate ?? '').localeCompare(a.startDate ?? '');
   });
+}
+
+/** Timeline pública do portfólio: subconjunto curado (exclui `showInTimeline: false`). */
+export function getTimelineExperiences(): Experience[] {
+  return getExperiences().filter((e) => e.showInTimeline !== false);
 }
 
 /* --------------------------- Certificações ---------------------------- */
@@ -166,5 +171,12 @@ export function localizeAbout(about: AboutContent, locale: Locale): AboutContent
     expertise: about.expertise_en?.length ? about.expertise_en : about.expertise,
     stats: about.stats.map((s) => ({ ...s, label: s.label_en || s.label })),
     skills: about.skills.map((sk) => ({ ...sk, name: sk.name_en || sk.name })),
+    cvSummary: about.cvSummary_en || about.cvSummary,
+    cvObjective: about.cvObjective_en || about.cvObjective,
+    languages: about.languages?.map((l) => ({
+      ...l,
+      name: l.name_en || l.name,
+      level: l.level_en || l.level,
+    })),
   };
 }

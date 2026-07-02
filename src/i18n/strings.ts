@@ -24,7 +24,7 @@ export const STRINGS = {
     },
     hero: {
       viewProjects: 'Ver Projetos',
-      downloadCv: 'Download CV',
+      viewCv: 'Ver Currículo',
       contact: 'Contato',
       scrollToAbout: 'Rolar para Sobre',
     },
@@ -91,6 +91,17 @@ export const STRINGS = {
       technologies: 'Tecnologias',
       date: 'Data',
     },
+    cv: {
+      seoTitle: 'Currículo',
+      downloadPdf: 'Baixar PDF',
+      summary: 'Resumo Profissional',
+      objective: 'Objetivo',
+      education: 'Formação Acadêmica',
+      experience: 'Experiência Profissional',
+      skills: 'Habilidades',
+      languages: 'Idiomas',
+      backToPortfolio: '← Voltar ao portfólio',
+    },
   },
   en: {
     nav: {
@@ -110,7 +121,7 @@ export const STRINGS = {
     },
     hero: {
       viewProjects: 'View Projects',
-      downloadCv: 'Download Resume',
+      viewCv: 'View Resume',
       contact: 'Contact',
       scrollToAbout: 'Scroll to About',
     },
@@ -176,6 +187,17 @@ export const STRINGS = {
       highlights: 'Highlights',
       technologies: 'Technologies',
       date: 'Date',
+    },
+    cv: {
+      seoTitle: 'Resume',
+      downloadPdf: 'Download PDF',
+      summary: 'Professional Summary',
+      objective: 'Career Objective',
+      education: 'Education',
+      experience: 'Professional Experience',
+      skills: 'Skills',
+      languages: 'Languages',
+      backToPortfolio: '← Back to portfolio',
     },
   },
 } as const satisfies Record<Locale, unknown>;
