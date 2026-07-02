@@ -5,7 +5,7 @@ headline: "Engenheiro de Dados e Software"
 headline_en: "Data & Software Engineer"
 subheadline: "Construindo pipelines de dados, plataformas web e arquiteturas que conectam sistemas — com foco em automação e entrega."
 subheadline_en: "Building data pipelines, web platforms and architectures that connect systems — with a focus on automation and delivery."
-avatar: "/uploads/avatar.png"
+avatar: "/uploads/avatar.jpg"
 roles:
   - "Data Engineer"
   - "Analytics Developer"
