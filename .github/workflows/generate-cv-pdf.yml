@@ -1,9 +1,10 @@
 name: Generate CV PDFs
 
 # Roda só quando o conteúdo do currículo muda (about/experiences/projects)
-# ou o próprio gerador é alterado. Compila com LaTeX e commita os .pdf de
-# volta em public/ — esse commit é o que dispara o deploy de verdade
-# (Workers Builds da Cloudflare, que só copia public/ pra dist/).
+# ou o próprio gerador é alterado. Builda o site, abre /curriculo num
+# Chromium headless (Playwright) e commita os .pdf de volta em public/ —
+# esse commit é o que dispara o deploy de verdade (Workers Builds da
+# Cloudflare, que só copia public/ pra dist/).
 
 on:
   push:
@@ -33,17 +34,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install LaTeX
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends \
-            texlive-latex-base \
-            texlive-latex-recommended \
-            texlive-latex-extra \
-            texlive-lang-portuguese \
-            texlive-fonts-recommended \
-            fonts-lmodern \
-            latexmk
+      - name: Build site
+        run: npm run build
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
 
       - name: Generate CV PDFs
         run: node scripts/generate-cv-pdf.mjs

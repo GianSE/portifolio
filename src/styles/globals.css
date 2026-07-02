@@ -157,6 +157,16 @@ p {
 
 /* ===================== Impressão ===================== */
 @media print {
+  html {
+    /* color-scheme: dark (tokens.css) faz o navegador pintar de preto
+       qualquer área da página sem conteúdo (ex.: margem do PDF) por
+       baixo do CSS normal — nem `background` com !important sobrepõe. */
+    color-scheme: light !important;
+  }
+  body,
+  html {
+    background: #fff !important;
+  }
   body::before {
     display: none;
   }

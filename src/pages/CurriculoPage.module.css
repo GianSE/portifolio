@@ -369,7 +369,8 @@
     font-size: 9pt;
   }
   .chip:not(:last-child)::after {
-    content: ', ';
+    /* espaço normal some no fim da caixa gerada — usa nbsp, que não colapsa */
+    content: ',\00A0';
   }
   .chips {
     gap: 0;
@@ -378,6 +379,9 @@
   .plainList {
     font-size: 9pt;
     color: #222;
+  }
+  .plainList strong {
+    color: #000;
   }
 
   .contacts a,
