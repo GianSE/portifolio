@@ -41,6 +41,7 @@ jobs:
             texlive-latex-extra \
             texlive-lang-portuguese \
             texlive-fonts-recommended \
+            fonts-lmodern \
             latexmk
 
       - name: Generate CV PDFs
