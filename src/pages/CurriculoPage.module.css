@@ -174,12 +174,13 @@
 .entryHead {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   align-items: baseline;
-  gap: var(--space-3);
+  gap: var(--space-1) var(--space-3);
 }
 
 .entryTitle {
+  flex: 1 1 260px;
+  min-width: 0;
   font-weight: var(--fw-semibold);
   color: var(--text);
   font-size: var(--fs-sm);
@@ -191,6 +192,8 @@
 }
 
 .entryDate {
+  margin-left: auto;
+  flex-shrink: 0;
   font-family: var(--font-mono);
   font-size: var(--fs-xs);
   color: var(--text-faint);
@@ -266,6 +269,9 @@
   .entryHead {
     flex-direction: column;
     gap: 2px;
+  }
+  .entryDate {
+    margin-left: 0;
   }
 }
 
