@@ -5,6 +5,9 @@ node_modules/
 dist/
 *.local
 
+# LaTeX build (scripts/generate-cv-pdf.mjs) — só o .pdf final em public/ é commitado
+.cv-build/
+
 # Logs
 *.log
 npm-debug.log*
