@@ -2,13 +2,17 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import type { Project } from '@/types/content';
 import { scaleIn } from '@/animations/variants';
+import { useLocale } from '@/hooks/useLocale';
+import { STRINGS } from '@/i18n/strings';
 import { Tag } from '@/components/Tag/Tag';
 import { Icon } from '@/components/Icon/Icon';
 import styles from './ProjectCard.module.css';
 
-interface ProjectCardProps { project: Project; }
+interface ProjectCardProps { project: Project; categoryLabel?: string; }
 
-export function ProjectCard({ project }: ProjectCardProps) {
+export function ProjectCard({ project, categoryLabel }: ProjectCardProps) {
+  const { locale } = useLocale();
+  const t = STRINGS[locale].projects;
   const { slug, title, category, description, technologies, highlights, cover, github, demo } = project;
 
   return (
@@ -27,7 +31,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             <span className={styles.coverInitial}>{title[0]}</span>
           </div>
         )}
-        <Tag variant="accent">{category}</Tag>
+        <Tag variant="accent">{categoryLabel ?? category}</Tag>
       </div>
 
       {/* Body */}
@@ -48,7 +52,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
         {/* Tech tags */}
         <div className={styles.tags}>
-          {technologies.slice(0, 5).map((t) => <Tag key={t}>{t}</Tag>)}
+          {technologies.slice(0, 5).map((tech) => <Tag key={tech}>{tech}</Tag>)}
           {technologies.length > 5 && <Tag>+{technologies.length - 5}</Tag>}
         </div>
       </div>
@@ -56,7 +60,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       {/* Footer */}
       <div className={styles.footer}>
         <Link to={`/projetos/${slug}`} className={styles.detailLink}>
-          Ver detalhes
+          {t.viewDetails}
           <Icon name="arrow-right" size={14} />
         </Link>
         <div className={styles.links}>

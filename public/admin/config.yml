@@ -30,8 +30,11 @@ collections:
         file: content/about/index.md
         fields:
           - { label: "Badge do Hero", name: heroBadge, widget: string }
+          - { label: "Badge do Hero (EN)", name: heroBadge_en, widget: string, required: false }
           - { label: "Headline", name: headline, widget: string }
+          - { label: "Headline (EN)", name: headline_en, widget: string, required: false }
           - { label: "Subheadline", name: subheadline, widget: text }
+          - { label: "Subheadline (EN)", name: subheadline_en, widget: text, required: false }
           - { label: "Avatar", name: avatar, widget: image, required: false }
           - label: "Títulos do efeito de digitação"
             name: roles
@@ -41,15 +44,26 @@ collections:
             name: expertise
             widget: list
             field: { label: Área, name: item, widget: string }
+          - label: "Áreas de expertise (EN)"
+            name: expertise_en
+            widget: list
+            required: false
+            field: { label: Area, name: item, widget: string }
           - label: "Parágrafos (Sobre mim)"
             name: paragraphs
             widget: list
             field: { label: Parágrafo, name: p, widget: text }
+          - label: "Paragraphs (EN)"
+            name: paragraphs_en
+            widget: list
+            required: false
+            field: { label: Paragraph, name: p, widget: text }
           - label: "Contadores de impacto"
             name: stats
             widget: list
             fields:
               - { label: Rótulo, name: label, widget: string }
+              - { label: "Rótulo (EN)", name: label_en, widget: string, required: false }
               - { label: Valor, name: value, widget: number }
               - { label: Sufixo (ex.: +), name: suffix, widget: string, required: false }
           - label: "Categorias de competências"
@@ -57,6 +71,7 @@ collections:
             widget: list
             fields:
               - { label: Categoria, name: name, widget: string }
+              - { label: "Categoria (EN)", name: name_en, widget: string, required: false }
               - label: "Ícone"
                 name: icon
                 widget: select
@@ -76,6 +91,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: Título, name: title, widget: string }
+      - { label: "Título (EN)", name: title_en, widget: string, required: false }
       - label: Categoria
         name: category
         widget: select
@@ -84,6 +100,7 @@ collections:
       - { label: Ordem, name: order, widget: number, required: false }
       - { label: Data, name: date, widget: datetime, format: "YYYY-MM-DD" }
       - { label: Descrição curta, name: description, widget: text }
+      - { label: "Descrição curta (EN)", name: description_en, widget: text, required: false }
       - label: Tecnologias
         name: technologies
         widget: list
@@ -92,10 +109,16 @@ collections:
         name: highlights
         widget: list
         field: { label: Destaque, name: h, widget: string }
+      - label: "Destaques (EN)"
+        name: highlights_en
+        widget: list
+        required: false
+        field: { label: Highlight, name: h, widget: string }
       - { label: Imagem de capa, name: cover, widget: image, required: false }
       - { label: GitHub, name: github, widget: string, required: false }
       - { label: Demo, name: demo, widget: string, required: false }
       - { label: Descrição completa (Markdown), name: body, widget: markdown }
+      - { label: "Descrição completa (Markdown, EN)", name: body_en, widget: markdown, required: false }
 
   # ---------- Arquiteturas ----------
   - name: architectures
@@ -106,7 +129,9 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: Título, name: title, widget: string }
+      - { label: "Título (EN)", name: title_en, widget: string, required: false }
       - { label: Descrição, name: description, widget: text }
+      - { label: "Descrição (EN)", name: description_en, widget: text, required: false }
       - { label: Ordem, name: order, widget: number, required: false }
       - { label: Data, name: date, widget: datetime, format: "YYYY-MM-DD" }
       - label: "Nós do fluxo"
@@ -114,12 +139,15 @@ collections:
         widget: list
         fields:
           - { label: Rótulo, name: label, widget: string }
+          - { label: "Rótulo (EN)", name: label_en, widget: string, required: false }
           - { label: Descrição do nó, name: description, widget: string, required: false }
+          - { label: "Descrição do nó (EN)", name: description_en, widget: string, required: false }
       - label: Tecnologias
         name: technologies
         widget: list
         field: { label: Tecnologia, name: tech, widget: string }
       - { label: Descrição detalhada (Markdown), name: body, widget: markdown }
+      - { label: "Descrição detalhada (Markdown, EN)", name: body_en, widget: markdown, required: false }
 
   # ---------- Experiências ----------
   - name: experiences
@@ -130,18 +158,27 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: Cargo, name: role, widget: string }
+      - { label: "Cargo (EN)", name: role_en, widget: string, required: false }
       - { label: Organização, name: organization, widget: string }
       - { label: Área, name: area, widget: string }
+      - { label: "Área (EN)", name: area_en, widget: string, required: false }
       - { label: Data de início (YYYY-MM), name: startDate, widget: string }
       - { label: Data de fim (YYYY-MM), name: endDate, widget: string, required: false }
       - { label: Emprego atual, name: current, widget: boolean, default: false }
       - { label: Ordem, name: order, widget: number, required: false }
       - { label: Descrição curta, name: description, widget: text }
+      - { label: "Descrição curta (EN)", name: description_en, widget: text, required: false }
       - label: Destaques
         name: highlights
         widget: list
         field: { label: Destaque, name: h, widget: string }
+      - label: "Destaques (EN)"
+        name: highlights_en
+        widget: list
+        required: false
+        field: { label: Highlight, name: h, widget: string }
       - { label: Detalhes (Markdown), name: body, widget: markdown }
+      - { label: "Detalhes (Markdown, EN)", name: body_en, widget: markdown, required: false }
 
   # ---------- Certificações ----------
   - name: certifications

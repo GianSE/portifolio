@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { getProjects, getProjectCategories } from '@/services/content.service';
+import { getProjects, getProjectCategories, localizeProject } from '@/services/content.service';
 import { staggerContainer, viewportOnce } from '@/animations/variants';
+import { useLocale } from '@/hooks/useLocale';
+import { STRINGS } from '@/i18n/strings';
 import { Section } from '@/components/Section/Section';
 import { ProjectCard } from './ProjectCard';
 import styles from './Projects.module.css';
@@ -9,7 +11,9 @@ import styles from './Projects.module.css';
 const ALL = 'Todos';
 
 export function Projects() {
-  const projects = getProjects();
+  const { locale } = useLocale();
+  const t = STRINGS[locale].projects;
+  const projects = getProjects().map((p) => localizeProject(p, locale));
   const rawCategories = getProjectCategories();
   const filters = [ALL, ...rawCategories];
   const [active, setActive] = useState(ALL);
@@ -19,9 +23,9 @@ export function Projects() {
   return (
     <Section
       id="projects"
-      eyebrow="// projetos"
-      title="O que construí"
-      subtitle="Sistemas, plataformas e soluções construídos do conceito ao deploy."
+      eyebrow={t.eyebrow}
+      title={t.title}
+      subtitle={t.subtitle}
     >
       {/* Filtros */}
       <div className={styles.filters}>
@@ -31,7 +35,7 @@ export function Projects() {
             className={[styles.filter, active === f ? styles.filterActive : ''].join(' ')}
             onClick={() => setActive(f)}
           >
-            {f}
+            {f === ALL ? t.all : (t.categories[f] ?? f)}
           </button>
         ))}
       </div>
@@ -48,13 +52,13 @@ export function Projects() {
           viewport={viewportOnce}
         >
           {visible.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
+            <ProjectCard key={project.slug} project={project} categoryLabel={t.categories[project.category] ?? project.category} />
           ))}
         </motion.div>
       </AnimatePresence>
 
       {visible.length === 0 && (
-        <p className={styles.empty}>Nenhum projeto nesta categoria ainda.</p>
+        <p className={styles.empty}>{t.empty}</p>
       )}
     </Section>
   );

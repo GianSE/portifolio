@@ -1,10 +1,14 @@
 import { SITE, SOCIAL_LINKS, NAV_LINKS } from '@/data/site';
+import { useLocale } from '@/hooks/useLocale';
+import { STRINGS } from '@/i18n/strings';
 import { Icon, type IconName } from '@/components/Icon/Icon';
 import { scrollToSection } from '@/utils/scroll';
 import styles from './Footer.module.css';
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const { locale } = useLocale();
+  const t = STRINGS[locale];
 
   return (
     <footer className={styles.footer}>
@@ -30,22 +34,22 @@ export function Footer() {
           </div>
         </div>
 
-        <nav className={styles.nav} aria-label="Rodapé">
+        <nav className={styles.nav} aria-label={t.footer.ariaNav}>
           {NAV_LINKS.map((link) => (
             <button
               key={link.id}
               className={styles.navLink}
               onClick={() => scrollToSection(link.id)}
             >
-              {link.label}
+              {t.nav[link.id as keyof typeof t.nav]}
             </button>
           ))}
         </nav>
       </div>
 
       <div className={`container ${styles.bottom}`}>
-        <span>© {year} Gian Rodrigues. Todos os direitos reservados.</span>
-        <span className={styles.built}>Construído com React, TypeScript & Vite</span>
+        <span>© {year} Gian Rodrigues. {t.footer.rights}</span>
+        <span className={styles.built}>{t.footer.builtWith}</span>
       </div>
     </footer>
   );

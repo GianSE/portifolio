@@ -1,21 +1,25 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { getExperiences } from '@/services/content.service';
+import { getExperiences, localizeExperience } from '@/services/content.service';
 import { fadeInUp, staggerContainer, viewportOnce } from '@/animations/variants';
 import { formatMonthYear } from '@/utils/format';
+import { useLocale } from '@/hooks/useLocale';
+import { STRINGS } from '@/i18n/strings';
 import { Section } from '@/components/Section/Section';
 import styles from './Timeline.module.css';
 
 export function Timeline() {
-  const experiences = getExperiences();
+  const { locale } = useLocale();
+  const t = STRINGS[locale].timeline;
+  const experiences = getExperiences().map((e) => localizeExperience(e, locale));
   const lineRef = useRef<HTMLDivElement>(null);
 
   return (
     <Section
       id="timeline"
-      eyebrow="// trajetória"
-      title="Evolução profissional"
-      subtitle="A jornada de desenvolvimento web à engenharia de dados e arquitetura corporativa."
+      eyebrow={t.eyebrow}
+      title={t.title}
+      subtitle={t.subtitle}
     >
       <div className={styles.wrap}>
         {/* Linha vertical animada */}
@@ -63,7 +67,7 @@ export function Timeline() {
                   <div className={styles.cardMeta}>
                     <span className={styles.area}>{exp.area}</span>
                     <span className={styles.dates}>
-                      {formatMonthYear(exp.startDate)} — {exp.current ? 'Atual' : formatMonthYear(exp.endDate)}
+                      {formatMonthYear(exp.startDate, locale)} — {exp.current ? t.current : formatMonthYear(exp.endDate, locale)}
                     </span>
                   </div>
                   <h3 className={styles.role}>{exp.role}</h3>
@@ -81,7 +85,7 @@ export function Timeline() {
                   )}
 
                   {exp.current && (
-                    <span className={styles.currentBadge}>● Atual</span>
+                    <span className={styles.currentBadge}>● {t.current}</span>
                   )}
                 </motion.div>
               </motion.li>

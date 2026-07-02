@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
-import { getArchitectures } from '@/services/content.service';
+import { getArchitectures, localizeArchitecture } from '@/services/content.service';
 import type { Architecture } from '@/types/content';
 import { fadeInUp, staggerContainer, viewportOnce } from '@/animations/variants';
+import { useLocale } from '@/hooks/useLocale';
+import { STRINGS } from '@/i18n/strings';
 import { Section } from '@/components/Section/Section';
 import { Tag } from '@/components/Tag/Tag';
 import styles from './Architectures.module.css';
@@ -80,14 +82,16 @@ function Diagram({ arch }: DiagramProps) {
 }
 
 export function Architectures() {
-  const architectures = getArchitectures();
+  const { locale } = useLocale();
+  const t = STRINGS[locale].architectures;
+  const architectures = getArchitectures().map((a) => localizeArchitecture(a, locale));
 
   return (
     <Section
       id="architectures"
-      eyebrow="// arquiteturas"
-      title="Arquiteturas corporativas"
-      subtitle="Diagramas dos principais sistemas e fluxos que projeto e implemento."
+      eyebrow={t.eyebrow}
+      title={t.title}
+      subtitle={t.subtitle}
     >
       <motion.div
         className={styles.grid}

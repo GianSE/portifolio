@@ -11,17 +11,22 @@ export interface ContentMeta {
   slug: string;
   /** corpo Markdown bruto (após o front matter) */
   body: string;
+  /** corpo Markdown em inglês (opcional — fallback é `body`) */
+  body_en?: string;
 }
 
 export type ProjectCategory = 'Full Stack' | 'Dados' | 'Pesquisa' | 'DevOps';
 
 export interface Project extends ContentMeta {
   title: string;
+  title_en?: string;
   category: ProjectCategory;
   description: string;
+  description_en?: string;
   featured: boolean;
   technologies: string[];
   highlights: string[];
+  highlights_en?: string[];
   cover?: string;
   github?: string;
   demo?: string;
@@ -31,12 +36,16 @@ export interface Project extends ContentMeta {
 
 export interface ArchitectureNode {
   label: string;
+  label_en?: string;
   description?: string;
+  description_en?: string;
 }
 
 export interface Architecture extends ContentMeta {
   title: string;
+  title_en?: string;
   description: string;
+  description_en?: string;
   /** fluxo do diagrama: nós em sequência (renderizados em SVG/CSS) */
   flow: ArchitectureNode[];
   technologies: string[];
@@ -46,13 +55,17 @@ export interface Architecture extends ContentMeta {
 
 export interface Experience extends ContentMeta {
   role: string;
+  role_en?: string;
   organization: string;
   startDate: string; // ISO (ano-mês)
   endDate?: string; // ausente = atual
   current: boolean;
   area: string; // ex.: "Engenharia de Dados"
+  area_en?: string;
   description: string;
+  description_en?: string;
   highlights: string[];
+  highlights_en?: string[];
   order?: number;
 }
 
@@ -81,24 +94,31 @@ export interface SkillItem {
 
 export interface SkillCategory {
   name: string;
+  name_en?: string;
   icon?: string;
   items: SkillItem[];
 }
 
 export interface StatItem {
   label: string;
+  label_en?: string;
   value: number;
   suffix?: string;
 }
 
 export interface AboutContent extends ContentMeta {
   heroBadge: string;
-  roles: string[]; // efeito de digitação no Hero
+  heroBadge_en?: string;
+  roles: string[]; // efeito de digitação no Hero (já em inglês, sem tradução)
   headline: string;
+  headline_en?: string;
   subheadline: string;
+  subheadline_en?: string;
   avatar?: string;
   paragraphs: string[];
+  paragraphs_en?: string[];
   expertise: string[]; // áreas destacadas em "Sobre Mim"
+  expertise_en?: string[];
   stats: StatItem[];
   skills: SkillCategory[];
 }

@@ -1,18 +1,23 @@
 import { motion } from 'framer-motion';
 import { SITE, SOCIAL_LINKS } from '@/data/site';
 import { fadeInUp, staggerContainer, viewportOnce } from '@/animations/variants';
+import { useLocale } from '@/hooks/useLocale';
+import { STRINGS } from '@/i18n/strings';
 import { Section } from '@/components/Section/Section';
 import { Icon, type IconName } from '@/components/Icon/Icon';
 import { Button } from '@/components/Button/Button';
 import styles from './Contact.module.css';
 
 export function Contact() {
+  const { locale } = useLocale();
+  const t = STRINGS[locale].contact;
+
   return (
     <Section
       id="contact"
-      eyebrow="// contato"
-      title="Vamos conversar"
-      subtitle="Aberto a projetos, oportunidades e colaborações técnicas."
+      eyebrow={t.eyebrow}
+      title={t.title}
+      subtitle={t.subtitle}
     >
       <motion.div
         className={styles.grid}
@@ -23,11 +28,8 @@ export function Contact() {
       >
         {/* Card principal */}
         <motion.div variants={fadeInUp} className={styles.card}>
-          <h3 className={styles.cardTitle}>Entre em contato</h3>
-          <p className={styles.cardText}>
-            Prefira o e-mail para propostas de projeto ou oportunidades.
-            Respondo em até 48h.
-          </p>
+          <h3 className={styles.cardTitle}>{t.cardTitle}</h3>
+          <p className={styles.cardText}>{t.cardText}</p>
 
           <Button
             as="a"
@@ -39,7 +41,7 @@ export function Contact() {
           </Button>
 
           <div className={styles.divider}>
-            <span>ou conecte-se</span>
+            <span>{t.connect}</span>
           </div>
 
           <div className={styles.socials}>
@@ -60,12 +62,9 @@ export function Contact() {
 
         {/* Card CV */}
         <motion.div variants={fadeInUp} className={styles.cardSecondary}>
-          <span className={styles.label}>// currículo</span>
-          <h3 className={styles.cardTitle}>Ver meu CV</h3>
-          <p className={styles.cardText}>
-            Formação, trajetória completa e projetos acadêmicos disponíveis no
-            currículo publicado.
-          </p>
+          <span className={styles.label}>{t.cvLabel}</span>
+          <h3 className={styles.cardTitle}>{t.cvTitle}</h3>
+          <p className={styles.cardText}>{t.cvText}</p>
           <Button
             as="a"
             href={SITE.cvUrl}
@@ -74,7 +73,7 @@ export function Contact() {
             variant="secondary"
           >
             <Icon name="download" size={16} />
-            Abrir currículo
+            {t.cvButton}
           </Button>
         </motion.div>
       </motion.div>

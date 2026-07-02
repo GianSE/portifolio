@@ -1,5 +1,6 @@
 import { useSeo } from '@/hooks/useSeo';
-import { getAbout } from '@/services/content.service';
+import { useLocale } from '@/hooks/useLocale';
+import { getAbout, localizeAbout } from '@/services/content.service';
 import { Hero } from '@/sections/Hero/Hero';
 import { About } from '@/sections/About/About';
 import { Skills } from '@/sections/Skills/Skills';
@@ -10,8 +11,10 @@ import { Terminal } from '@/sections/Terminal/Terminal';
 import { Contact } from '@/sections/Contact/Contact';
 
 export default function HomePage() {
-  useSeo({ path: '/' });
-  const about = getAbout();
+  const { locale } = useLocale();
+  const aboutRaw = getAbout();
+  const about = aboutRaw ? localizeAbout(aboutRaw, locale) : undefined;
+  useSeo({ path: '/', description: about?.subheadline });
 
   return (
     <>

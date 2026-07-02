@@ -1,11 +1,15 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useSeo } from '@/hooks/useSeo';
+import { useLocale } from '@/hooks/useLocale';
+import { STRINGS } from '@/i18n/strings';
 import { fadeInUp, staggerContainer } from '@/animations/variants';
 import styles from './NotFoundPage.module.css';
 
 export default function NotFoundPage() {
-  useSeo({ title: 'Página não encontrada', path: '/404' });
+  const { locale } = useLocale();
+  const t = STRINGS[locale].notFound;
+  useSeo({ title: t.seoTitle, path: '/404' });
 
   return (
     <section className={styles.wrap}>
@@ -19,14 +23,14 @@ export default function NotFoundPage() {
           404
         </motion.p>
         <motion.h1 variants={fadeInUp} className={styles.title}>
-          Esta rota não foi encontrada
+          {t.title}
         </motion.h1>
         <motion.p variants={fadeInUp} className={styles.text}>
-          O endereço acessado não existe ou foi movido.
+          {t.text}
         </motion.p>
         <motion.div variants={fadeInUp}>
           <Link to="/" className={styles.link}>
-            ← Voltar ao início
+            {t.back}
           </Link>
         </motion.div>
       </motion.div>

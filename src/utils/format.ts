@@ -1,10 +1,13 @@
-/** Formata uma data ISO (YYYY-MM-DD ou YYYY-MM) em "mês/ano" pt-BR. */
-export function formatMonthYear(iso?: string): string {
-  if (!iso) return 'Atual';
+/** Formata uma data ISO (YYYY-MM-DD ou YYYY-MM) em "mês/ano". */
+export function formatMonthYear(iso?: string, locale: 'pt' | 'en' = 'pt'): string {
+  if (!iso) return locale === 'en' ? 'Current' : 'Atual';
   const [year, month] = iso.split('-');
   if (!month) return year;
   const date = new Date(Number(year), Number(month) - 1);
-  return date.toLocaleDateString('pt-BR', { month: 'short', year: 'numeric' });
+  return date.toLocaleDateString(locale === 'en' ? 'en-US' : 'pt-BR', {
+    month: 'short',
+    year: 'numeric',
+  });
 }
 
 /** Retorna apenas o ano de uma data ISO. */

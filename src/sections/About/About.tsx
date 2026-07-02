@@ -2,6 +2,8 @@ import { motion } from 'framer-motion';
 import type { AboutContent } from '@/types/content';
 import { fadeInUp, slideInLeft, slideInRight, staggerContainer, viewportOnce } from '@/animations/variants';
 import { useCounter } from '@/hooks/useCounter';
+import { useLocale } from '@/hooks/useLocale';
+import { STRINGS } from '@/i18n/strings';
 import { Section } from '@/components/Section/Section';
 import styles from './About.module.css';
 
@@ -23,14 +25,14 @@ const FALLBACK_STATS = [
   { label: 'Usuários impactados', value: 5000, suffix: '+' },
 ];
 
-interface StatItemProps { value: number; suffix?: string; label: string; }
+interface StatItemProps { value: number; suffix?: string; label: string; locale: 'pt' | 'en'; }
 
-function StatItem({ value, suffix = '', label }: StatItemProps) {
+function StatItem({ value, suffix = '', label, locale }: StatItemProps) {
   const [count, ref] = useCounter(value);
   return (
     <div className={styles.stat} ref={ref}>
       <span className={styles.statValue}>
-        {count.toLocaleString('pt-BR')}{suffix}
+        {count.toLocaleString(locale === 'en' ? 'en-US' : 'pt-BR')}{suffix}
       </span>
       <span className={styles.statLabel}>{label}</span>
     </div>
@@ -40,12 +42,14 @@ function StatItem({ value, suffix = '', label }: StatItemProps) {
 interface AboutProps { about?: AboutContent; }
 
 export function About({ about }: AboutProps) {
+  const { locale } = useLocale();
+  const t = STRINGS[locale].about;
   const paragraphs = about?.paragraphs?.length ? about.paragraphs : FALLBACK_PARAGRAPHS;
   const expertise  = about?.expertise?.length  ? about.expertise  : FALLBACK_EXPERTISE;
   const stats      = about?.stats?.length      ? about.stats      : FALLBACK_STATS;
 
   return (
-    <Section id="about" eyebrow="// sobre mim" title="Quem sou eu">
+    <Section id="about" eyebrow={t.eyebrow} title={t.title}>
       <div className={styles.grid}>
         {/* Texto + expertise */}
         <motion.div
@@ -59,7 +63,7 @@ export function About({ about }: AboutProps) {
           </div>
 
           <div className={styles.expertise}>
-            <h3 className={styles.expertiseTitle}>Áreas de atuação</h3>
+            <h3 className={styles.expertiseTitle}>{t.expertiseTitle}</h3>
             <motion.ul
               className={styles.expertiseList}
               variants={staggerContainer(0.07)}
@@ -87,7 +91,7 @@ export function About({ about }: AboutProps) {
         >
           <div className={styles.statsGrid}>
             {stats.map((s) => (
-              <StatItem key={s.label} value={s.value} suffix={s.suffix} label={s.label} />
+              <StatItem key={s.label} value={s.value} suffix={s.suffix} label={s.label} locale={locale} />
             ))}
           </div>
 
@@ -97,11 +101,11 @@ export function About({ about }: AboutProps) {
             whileHover={{ y: -4 }}
             transition={{ duration: 0.3 }}
           >
-            <span className={styles.cardLabel}>// tech focus</span>
+            <span className={styles.cardLabel}>{t.techFocusLabel}</span>
             <p className={styles.cardText}>
-              Python · Polars · DuckDB<br />
-              Data Lake · Docker · Prefect<br />
-              CI/CD · Power Automate · MCP
+              {t.techFocus[0]}<br />
+              {t.techFocus[1]}<br />
+              {t.techFocus[2]}
             </p>
           </motion.div>
         </motion.div>

@@ -1,0 +1,46 @@
+<svg width="800" height="450" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tutoria Tech — Meninas Digitais UTFPR">
+  <defs>
+    <linearGradient id="brand" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c5cff"/>
+      <stop offset="55%" stop-color="#4f8cff"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="15%" cy="0%" r="60%">
+      <stop offset="0%" stop-color="#4f8cff" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#4f8cff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="100%" cy="100%" r="60%">
+      <stop offset="0%" stop-color="#7c5cff" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#7c5cff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="800" height="450" fill="#0a0b10"/>
+  <rect width="800" height="450" fill="url(#glow1)"/>
+  <rect width="800" height="450" fill="url(#glow2)"/>
+
+  <!-- monograma -->
+  <text x="56" y="240" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="180" font-weight="800" fill="url(#brand)">T</text>
+
+  <!-- três papéis: Admin / Mentora / Aluna -->
+  <g font-family="'JetBrains Mono', ui-monospace, monospace" font-size="14" transform="translate(300,300)">
+    <g>
+      <circle cx="17" cy="17" r="17" fill="rgba(124,92,255,0.15)" stroke="#7c5cff"/>
+      <text x="17" y="22" text-anchor="middle" fill="#c9b8ff">A</text>
+      <text x="44" y="22" fill="#a4abbb">Admin</text>
+    </g>
+    <g transform="translate(150,0)">
+      <circle cx="17" cy="17" r="17" fill="rgba(79,140,255,0.15)" stroke="#4f8cff"/>
+      <text x="17" y="22" text-anchor="middle" fill="#b8d3ff">M</text>
+      <text x="44" y="22" fill="#a4abbb">Mentora</text>
+    </g>
+    <g transform="translate(320,0)">
+      <circle cx="17" cy="17" r="17" fill="rgba(34,211,238,0.15)" stroke="#22d3ee"/>
+      <text x="17" y="22" text-anchor="middle" fill="#b8f3ff">A</text>
+      <text x="44" y="22" fill="#a4abbb">Aluna</text>
+    </g>
+  </g>
+
+  <text x="56" y="380" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="16" letter-spacing="1.5" fill="#6b7280">REACT · NODE.JS · FASTAPI · RAG · GEMINI</text>
+  <text x="56" y="404" font-family="Inter, system-ui, sans-serif" font-size="22" font-weight="700" fill="#f2f4f8">Tutoria Tech — Meninas Digitais UTFPR</text>
+</svg>

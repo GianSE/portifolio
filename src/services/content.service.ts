@@ -16,6 +16,7 @@ import type {
   Experience,
   Project,
 } from '@/types/content';
+import type { Locale } from '@/types/locale';
 
 type Module<T> = { default: T };
 
@@ -110,4 +111,60 @@ const aboutModules = import.meta.glob<Module<AboutContent>>('/content/about/*.md
 
 export function getAbout(): AboutContent | undefined {
   return collect(aboutModules)[0];
+}
+
+/* ---------------------------- Localização ------------------------------
+ * Conteúdo é sempre autorado em pt (fonte). Campos `*_en` são opcionais —
+ * quando ausentes, cai de volta para o valor em pt automaticamente.
+ * ------------------------------------------------------------------------ */
+
+export function localizeProject(project: Project, locale: Locale): Project {
+  if (locale !== 'en') return project;
+  return {
+    ...project,
+    title: project.title_en || project.title,
+    description: project.description_en || project.description,
+    highlights: project.highlights_en?.length ? project.highlights_en : project.highlights,
+    body: project.body_en || project.body,
+  };
+}
+
+export function localizeArchitecture(architecture: Architecture, locale: Locale): Architecture {
+  if (locale !== 'en') return architecture;
+  return {
+    ...architecture,
+    title: architecture.title_en || architecture.title,
+    description: architecture.description_en || architecture.description,
+    body: architecture.body_en || architecture.body,
+    flow: architecture.flow.map((node) => ({
+      ...node,
+      label: node.label_en || node.label,
+      description: node.description_en || node.description,
+    })),
+  };
+}
+
+export function localizeExperience(experience: Experience, locale: Locale): Experience {
+  if (locale !== 'en') return experience;
+  return {
+    ...experience,
+    role: experience.role_en || experience.role,
+    area: experience.area_en || experience.area,
+    description: experience.description_en || experience.description,
+    highlights: experience.highlights_en?.length ? experience.highlights_en : experience.highlights,
+  };
+}
+
+export function localizeAbout(about: AboutContent, locale: Locale): AboutContent {
+  if (locale !== 'en') return about;
+  return {
+    ...about,
+    heroBadge: about.heroBadge_en || about.heroBadge,
+    headline: about.headline_en || about.headline,
+    subheadline: about.subheadline_en || about.subheadline,
+    paragraphs: about.paragraphs_en?.length ? about.paragraphs_en : about.paragraphs,
+    expertise: about.expertise_en?.length ? about.expertise_en : about.expertise,
+    stats: about.stats.map((s) => ({ ...s, label: s.label_en || s.label })),
+    skills: about.skills.map((sk) => ({ ...sk, name: sk.name_en || sk.name })),
+  };
 }

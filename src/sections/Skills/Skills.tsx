@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import type { AboutContent, SkillCategory } from '@/types/content';
 import { fadeInUp, staggerContainer, viewportOnce } from '@/animations/variants';
+import { useLocale } from '@/hooks/useLocale';
+import { STRINGS } from '@/i18n/strings';
 import { Section } from '@/components/Section/Section';
 import { Icon, type IconName } from '@/components/Icon/Icon';
 import styles from './Skills.module.css';
@@ -65,15 +67,17 @@ function CategoryCard({ category, active, onClick }: CategoryCardProps) {
 interface SkillsProps { about?: AboutContent; }
 
 export function Skills({ about }: SkillsProps) {
+  const { locale } = useLocale();
+  const t = STRINGS[locale].skills;
   const categories = about?.skills?.length ? about.skills : FALLBACK_SKILLS;
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
 
   return (
     <Section
       id="skills"
-      eyebrow="// competências"
-      title="Stack técnica"
-      subtitle="Tecnologias e ferramentas que uso no dia a dia para construir, escalar e entregar."
+      eyebrow={t.eyebrow}
+      title={t.title}
+      subtitle={t.subtitle}
     >
       <motion.div
         className={styles.grid}

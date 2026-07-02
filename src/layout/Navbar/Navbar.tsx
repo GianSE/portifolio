@@ -4,8 +4,11 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { NAV_LINKS, SITE } from '@/data/site';
 import { useScrollSpy } from '@/hooks/useScrollSpy';
 import { useScrolled } from '@/hooks/useScrolled';
+import { useLocale } from '@/hooks/useLocale';
+import { STRINGS } from '@/i18n/strings';
 import { scrollToSection } from '@/utils/scroll';
 import { ThemeToggle } from '@/components/ThemeToggle/ThemeToggle';
+import { LocaleToggle } from '@/components/LocaleToggle/LocaleToggle';
 import { Icon } from '@/components/Icon/Icon';
 import { Button } from '@/components/Button/Button';
 import styles from './Navbar.module.css';
@@ -19,6 +22,8 @@ export function Navbar() {
   const isHome = pathname === '/';
   const activeId = useScrollSpy(isHome ? NAV_IDS : []);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { locale } = useLocale();
+  const t = STRINGS[locale];
 
   // Trava o scroll do body quando o menu mobile está aberto.
   useEffect(() => {
@@ -47,7 +52,7 @@ export function Navbar() {
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className={[styles.header, scrolled ? styles.scrolled : ''].join(' ')}
     >
-      <nav className={`container ${styles.nav}`} aria-label="Navegação principal">
+      <nav className={`container ${styles.nav}`} aria-label={t.navbar.ariaNav}>
         <button className={styles.brand} onClick={() => go('hero')}>
           <span className={styles.brandMark}>G</span>
           <span className={styles.brandName}>Gian Rodrigues</span>
@@ -65,13 +70,14 @@ export function Navbar() {
                 onClick={() => go(link.id)}
                 aria-current={isHome && activeId === link.id ? 'true' : undefined}
               >
-                {link.label}
+                {t.nav[link.id as keyof typeof t.nav]}
               </button>
             </li>
           ))}
         </ul>
 
         <div className={styles.actions}>
+          <LocaleToggle />
           <ThemeToggle />
           <Button
             as="a"
@@ -82,12 +88,12 @@ export function Navbar() {
             className={styles.cvBtn}
           >
             <Icon name="download" size={16} />
-            CV
+            {t.navbar.cv}
           </Button>
           <button
             className={styles.menuBtn}
             onClick={() => setMenuOpen((v) => !v)}
-            aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
+            aria-label={menuOpen ? t.navbar.closeMenu : t.navbar.openMenu}
             aria-expanded={menuOpen}
           >
             <Icon name={menuOpen ? 'close' : 'menu'} size={22} />
@@ -115,7 +121,7 @@ export function Navbar() {
                     ].join(' ')}
                     onClick={() => go(link.id)}
                   >
-                    {link.label}
+                    {t.nav[link.id as keyof typeof t.nav]}
                   </button>
                 </li>
               ))}

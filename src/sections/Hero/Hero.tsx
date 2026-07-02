@@ -2,6 +2,8 @@ import { motion } from 'framer-motion';
 import { SITE, SOCIAL_LINKS } from '@/data/site';
 import type { AboutContent } from '@/types/content';
 import { useTypewriter } from '@/hooks/useTypewriter';
+import { useLocale } from '@/hooks/useLocale';
+import { STRINGS } from '@/i18n/strings';
 import { fadeInUp, scaleIn, staggerContainer } from '@/animations/variants';
 import { scrollToSection } from '@/utils/scroll';
 import { Button } from '@/components/Button/Button';
@@ -23,6 +25,8 @@ interface HeroProps {
 export function Hero({ about }: HeroProps) {
   const roles = about?.roles?.length ? about.roles : FALLBACK_ROLES;
   const typed = useTypewriter(roles);
+  const { locale } = useLocale();
+  const t = STRINGS[locale].hero;
 
   return (
     <section id="hero" className={styles.hero}>
@@ -54,7 +58,7 @@ export function Hero({ about }: HeroProps) {
 
           <motion.div variants={fadeInUp} className={styles.actions}>
             <Button onClick={() => scrollToSection('projects')}>
-              Ver Projetos
+              {t.viewProjects}
               <Icon name="arrow-right" size={16} />
             </Button>
             <Button
@@ -65,10 +69,10 @@ export function Hero({ about }: HeroProps) {
               variant="secondary"
             >
               <Icon name="download" size={16} />
-              Download CV
+              {t.downloadCv}
             </Button>
             <Button onClick={() => scrollToSection('contact')} variant="ghost">
-              Contato
+              {t.contact}
             </Button>
           </motion.div>
 
@@ -104,7 +108,7 @@ export function Hero({ about }: HeroProps) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.6 }}
-        aria-label="Rolar para Sobre"
+        aria-label={t.scrollToAbout}
       >
         <span className={styles.mouse}>
           <span className={styles.wheel} />
