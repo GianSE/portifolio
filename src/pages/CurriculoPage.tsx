@@ -72,22 +72,14 @@ export default function CurriculoPage() {
     <div className={`container ${styles.page}`}>
       <div className={`${styles.toolbar} no-print`}>
         <Link to="/" className={styles.backLink}>{t.cv.backToPortfolio}</Link>
-        {import.meta.env.DEV ? (
-          // Em dev o PDF ainda não existe (só é gerado no build do CI) — cai para impressão.
-          <button type="button" className={styles.printBtn} onClick={() => window.print()}>
-            <Icon name="download" size={16} />
-            {t.cv.downloadPdf}
-          </button>
-        ) : (
-          <a
-            href={`/cv-${locale}.pdf`}
-            download={`Gian-Pedro-Rodrigues-Curriculo-${locale.toUpperCase()}.pdf`}
-            className={styles.printBtn}
-          >
-            <Icon name="download" size={16} />
-            {t.cv.downloadPdf}
-          </a>
-        )}
+        <a
+          href={`/cv-${locale}.pdf`}
+          download={`Gian-Pedro-Rodrigues-Curriculo-${locale.toUpperCase()}.pdf`}
+          className={styles.printBtn}
+        >
+          <Icon name="download" size={16} />
+          {t.cv.downloadPdf}
+        </a>
       </div>
 
       <article className={styles.sheet}>

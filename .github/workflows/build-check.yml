@@ -1,0 +1,29 @@
+name: Build check
+
+# O deploy de verdade é feito pelo Workers Builds da Cloudflare (nativo,
+# conectado direto no repo — ver dashboard Workers & Pages > portifolio >
+# Settings > Builds). Este workflow só valida que o build não quebrou.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
