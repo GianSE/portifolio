@@ -55,7 +55,7 @@ export function Navbar() {
       <nav className={`container ${styles.nav}`} aria-label={t.navbar.ariaNav}>
         <button className={styles.brand} onClick={() => go('hero')}>
           <span className={styles.brandMark}>G</span>
-          <span className={styles.brandName}>Gian Rodrigues</span>
+          <span className={styles.brandName}>Gian Pedro Rodrigues</span>
         </button>
 
         {/* Desktop */}

@@ -16,7 +16,7 @@ export interface SocialLink {
 }
 
 export const SITE = {
-  name: 'Gian Rodrigues',
+  name: 'Gian Pedro Rodrigues',
   title: 'Engenheiro de Software e Dados',
   email: 'gianpedrodev@gmail.com',
   cvUrl: 'https://gianse.github.io/curriculo/',

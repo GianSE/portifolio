@@ -3,8 +3,8 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Portfólio profissional de Gian Rodrigues — Engenheiro de Software e Dados",
-  "author": "Gian Rodrigues <gianpedrodev@gmail.com>",
+  "description": "Portfólio profissional de Gian Pedro Rodrigues — Engenheiro de Software e Dados",
+  "author": "Gian Pedro Rodrigues <gianpedrodev@gmail.com>",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

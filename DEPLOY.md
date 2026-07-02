@@ -1,4 +1,4 @@
-# Guia de Deploy — Portfólio Gian Rodrigues
+# Guia de Deploy — Portfólio Gian Pedro Rodrigues
 
 ## 1. Cloudflare Pages (portfólio público)
 

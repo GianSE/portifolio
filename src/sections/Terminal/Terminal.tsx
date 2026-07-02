@@ -11,7 +11,7 @@ interface Line {
 
 const SCRIPT: Line[] = [
   { type: 'cmd',   text: 'whoami' },
-  { type: 'out',   text: 'Gian Rodrigues' },
+  { type: 'out',   text: 'Gian Pedro Rodrigues' },
   { type: 'blank', text: '' },
   { type: 'cmd',   text: 'role' },
   { type: 'out',   text: 'Software & Data Engineer' },

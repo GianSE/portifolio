@@ -15,7 +15,7 @@ export function Footer() {
       <div className={`container ${styles.inner}`}>
         <div className={styles.brandCol}>
           <span className={styles.brand}>
-            <span className={styles.mark}>G</span> Gian Rodrigues
+            <span className={styles.mark}>G</span> Gian Pedro Rodrigues
           </span>
           <p className={styles.tagline}>{SITE.title}</p>
           <div className={styles.socials}>
@@ -48,7 +48,7 @@ export function Footer() {
       </div>
 
       <div className={`container ${styles.bottom}`}>
-        <span>© {year} Gian Rodrigues. {t.footer.rights}</span>
+        <span>© {year} Gian Pedro Rodrigues. {t.footer.rights}</span>
         <span className={styles.built}>{t.footer.builtWith}</span>
       </div>
     </footer>
