@@ -20,6 +20,7 @@ export function Navbar() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const isHome = pathname === '/';
+  const isCvPage = pathname === '/curriculo';
   const activeId = useScrollSpy(isHome ? NAV_IDS : []);
   const [menuOpen, setMenuOpen] = useState(false);
   const { locale } = useLocale();
@@ -81,12 +82,18 @@ export function Navbar() {
           <ThemeToggle />
           <Button
             as="a"
-            href={SITE.cvUrl}
+            href={isCvPage ? '/' : SITE.cvUrl}
             size="sm"
             className={styles.cvBtn}
           >
-            <Icon name="download" size={16} />
-            {t.navbar.cv}
+            {isCvPage ? (
+              t.cv.backToPortfolio
+            ) : (
+              <>
+                <Icon name="download" size={16} />
+                {t.navbar.cv}
+              </>
+            )}
           </Button>
           <button
             className={styles.menuBtn}
