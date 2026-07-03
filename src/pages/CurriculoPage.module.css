@@ -391,8 +391,7 @@
   }
 
   .contacts a,
-  .entry,
-  .section {
+  .entry {
     page-break-inside: avoid;
   }
 }
